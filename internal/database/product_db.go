@@ -17,7 +17,7 @@ func NewProductDB(db *sql.DB) *ProductDB{
 }
 
 func (pd *ProductDB) GetProducts() ([] *entity.Product, error) {
-	rows, err := pd.db.Query("SELECT id, name, description, price, categoryId, imageURL FROM products")
+	rows, err := pd.db.Query("SELECT id, name, description, price, category_id, image_url FROM products")
 
   if err != nil {
 		return nil, err 
@@ -42,7 +42,7 @@ func (pd *ProductDB) GetProducts() ([] *entity.Product, error) {
 }
 
 func (pd *ProductDB) CreateProduct(product *entity.Product) (*entity.Product, error) {
-	_, err := pd.db.Exec("INSERT INTO products (id, name, description, price, categoryId, imageURL) VALUES (?, ?, ?, ?, ?, ?)", product.CategoryId, product.Name, product.Description, product.CategoryId, product.ImageURL)
+	_, err := pd.db.Exec("INSERT INTO products (id, name, description, price, category_id, image_url) VALUES (?, ?, ?, ?, ?, ?)", product.CategoryId, product.Name, product.Description, product.Price, product.CategoryId, product.ImageURL)
 
 	if err != nil {
 		return nil, err
@@ -66,7 +66,7 @@ func(pd *ProductDB ) GetProduct(id string) (*entity.Product, error) {
 
 
 func (pd *ProductDB) GetProductByCategoryId(categoryId string) ([] *entity.Product, error) {
-	rows, err := pd.db.Query("SELECT id, name, description, price, categoryId, imageURL FROM products WHERE categoryId = ?", categoryId)
+	rows, err := pd.db.Query("SELECT id, name, description, price, category_id, image_url FROM products WHERE categoryId = ?", categoryId)
 
 	if err != nil {
 		return nil, err
