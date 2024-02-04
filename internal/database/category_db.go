@@ -43,7 +43,7 @@ func (cd *CategoryDB) GetCategories() ([] *entity.Category, error){
 }
 
 func (cd *CategoryDB) CreateCategory(category *entity.Category) (string, error) {
-	_, err := cd.db.Exec("INSERT INTO CATEGORY (id, name) VALUES (?, ?)", category.ID, category.Name) 
+	_, err := cd.db.Exec("INSERT INTO categories (id, name) VALUES (?, ?)", category.ID, category.Name) 
 
 	if err != nil {
 		return  "", err
