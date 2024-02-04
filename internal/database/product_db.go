@@ -42,7 +42,7 @@ func (pd *ProductDB) GetProducts() ([] *entity.Product, error) {
 }
 
 func (pd *ProductDB) CreateProduct(product *entity.Product) (*entity.Product, error) {
-	_, err := pd.db.Exec("INSERT INTO products (id, name, description, price, category_id, image_url) VALUES (?, ?, ?, ?, ?, ?)", product.CategoryId, product.Name, product.Description, product.Price, product.CategoryId, product.ImageURL)
+	_, err := pd.db.Exec("INSERT INTO products (id, name, description, price, category_id, image_url) VALUES (?, ?, ?, ?, ?, ?)", product.ID, product.Name, product.Description, product.Price, product.CategoryId, product.ImageURL)
 
 	if err != nil {
 		return nil, err
@@ -50,7 +50,6 @@ func (pd *ProductDB) CreateProduct(product *entity.Product) (*entity.Product, er
 
 	return product, nil
 }
-
 
 func(pd *ProductDB ) GetProduct(id string) (*entity.Product, error) {
 	var product entity.Product

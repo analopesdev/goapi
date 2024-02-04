@@ -25,11 +25,9 @@ Host: localhost:8080
 Content-Type: application/json
 
 {
-    "name": "Curso de Java",
+    "name": "Ana",
     "description": "Curso de Java",
     "price": 100.00,
-    "category": {
-        "id": "e993d1cf-2850-4bc5-ade5-78e4a06e660b"
-    },
-    "image_url": "http://www.google.com.br"
+    "category_id": "e993d1cf-2850-4bc5-ade5-78e4a06e660b",
+    "image_url": "http://www.google.com.br" 
 }

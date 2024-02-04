@@ -72,6 +72,13 @@ func (wph *WebProductHandler) CreateProduct(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
+	err = product.ValidateProduct()
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	result, err := wph.ProductService.CreateProduct(product.Name, product.Description, product.Price, product.CategoryId, product.ImageURL)
 
 	if err != nil {

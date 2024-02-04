@@ -3,6 +3,7 @@ package webserver
 import (
 	"encoding/json"
 	"net/http"
+
 	"github.com/analopesdev/goapi/internal/entity"
 	"github.com/analopesdev/goapi/internal/service"
 	"github.com/go-chi/chi/v5"
@@ -49,6 +50,13 @@ func (wch *WebCategoryHandler) CreateCategory(w http.ResponseWriter, r *http.Req
 	var category entity.Category
 
 	err := json.NewDecoder(r.Body).Decode(&category)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	err = category.ValidaCategory() 
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
