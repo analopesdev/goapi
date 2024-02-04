@@ -41,14 +41,14 @@ func (pd *ProductDB) GetProducts() ([] *entity.Product, error) {
 		return products, nil
 }
 
-func (pd *ProductDB) CreateProduct(product *entity.Product) (string, error) {
+func (pd *ProductDB) CreateProduct(product *entity.Product) (*entity.Product, error) {
 	_, err := pd.db.Exec("INSERT INTO products (id, name, description, price, categoryId, imageURL) VALUES (?, ?, ?, ?, ?, ?)", product.CategoryId, product.Name, product.Description, product.CategoryId, product.ImageURL)
 
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	return product.ID, nil
+	return product, nil
 }
 
 
